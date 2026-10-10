@@ -267,11 +267,14 @@ What changed versus the plan above, and why:
   a parsable standings table.
 - **RPI has tied ranks.** The rankings table is unique on (poll, as-of, team) rather than rank.
 
-Data loaded locally on 2026-10-10: 4,823 matches (Aug 21 through Nov 28, including the
-full remaining schedule), 347 D1 teams linked to ESPN (14 non-D1 exhibition opponents
-unlinked), AVCA Week 8, RPI through Oct 4, 12 stat-leader tables, and box scores for all
-226 ACC matches to date. The remaining box scores load with `pnpm ingest boxscores`.
+Data loaded locally on 2026-10-10 with `pnpm ingest backfill` (about 17 minutes): 4,823
+matches (Aug 21 through Nov 28, including the full remaining schedule), 347 D1 teams linked
+to ESPN (14 non-D1 exhibition opponents unlinked), AVCA Week 8, RPI through Oct 4, 12
+stat-leader tables, and box scores for all 2,803 completed matches (66,966 player lines).
 
-Still to do, in order: full box score backfill; deploy (Neon + Vercel + GitHub Actions
-secret); committee Top 16 parser check when the first 2026 reveal posts; bracketology and
-auto-bid tracker (Phase 4); bracket page for Nov 29; Playwright smoke tests in CI.
+Lesson learned: PGlite is single-process. Running an ingest job while the dev server was
+open corrupted the local database and it had to be rebuilt. With Neon this does not apply.
+
+Still to do, in order: deploy (Neon + Vercel + GitHub Actions secret); committee Top 16
+parser check when the first 2026 reveal posts; bracketology and auto-bid tracker
+(Phase 4); bracket page for Nov 29; Playwright smoke tests in CI.
