@@ -1,0 +1,348 @@
+slug,short_name,espn_id,espn_name,method
+abilene-christian,Abilene Christian,2000,Abilene Christian Wildcats,exact
+air-force,Air Force,2005,Air Force Falcons,exact
+akron,Akron,2006,Akron Zips,exact
+alabama,Alabama,333,Alabama Crimson Tide,exact
+alabama-am,Alabama A&M,2010,Alabama A&M Bulldogs,exact
+alabama-st,Alabama St.,2011,Alabama State Hornets,exact
+albany-ny,UAlbany,399,UAlbany Great Danes,exact
+alcorn,Alcorn,2016,Alcorn State Braves,fuzzy:0.50
+am-corpus-chris,A&M-Corpus Christi,357,Texas A&M-Corpus Christi Islanders,fuzzy:0.83
+american,American,44,American University Eagles,exact
+appalachian-st,App State,2026,App State Mountaineers,exact
+arizona,Arizona,12,Arizona Wildcats,exact
+arizona-st,Arizona St.,9,Arizona State Sun Devils,exact
+ark-pine-bluff,Ark.-Pine Bluff,2029,Arkansas-Pine Bluff Golden Lions,exact
+arkansas,Arkansas,8,Arkansas Razorbacks,exact
+arkansas-st,Arkansas St.,2032,Arkansas State Red Wolves,exact
+army,Army West Point,349,Army Black Knights,exact
+auburn,Auburn,2,Auburn Tigers,exact
+austin-peay,Austin Peay,2046,Austin Peay Governors,exact
+bakersfield,CSU Bakersfield,2934,Cal State Bakersfield Roadrunners,exact
+ball-st,Ball St.,2050,Ball State Cardinals,exact
+baylor,Baylor,239,Baylor Bears,exact
+bellarmine,Bellarmine,91,Bellarmine Knights,exact
+belmont,Belmont,2057,Belmont Bruins,exact
+bethune-cookman,Bethune-Cookman,2065,Bethune-Cookman Wildcats,exact
+binghamton,Binghamton,2066,Binghamton Bearcats,exact
+boise-st,Boise St.,68,Boise State Broncos,exact
+boston-college,Boston College,103,Boston College Eagles,exact
+bowie-st,Bowie St.,2075,Bowie State Bulldogs,exact
+bowling-green,Bowling Green,189,Bowling Green Falcons,exact
+bradley,Bradley,71,Bradley Braves,exact
+brown,Brown,225,Brown Bears,exact
+bryant,Bryant,2803,Bryant Bulldogs,exact
+bucknell,Bucknell,2083,Bucknell Bison,exact
+buffalo,Buffalo,2084,Buffalo Bulls,exact
+butler,Butler,2086,Butler Bulldogs,exact
+byu,BYU,252,BYU Cougars,exact
+cal-poly,Cal Poly,13,Cal Poly Mustangs,exact
+cal-st-fullerton,Cal St. Fullerton,2239,Cal State Fullerton Titans,exact
+cal-st-northridge,CSUN,2463,Cal State Northridge Matadors,exact
+california,California,25,California Golden Bears,exact
+california-baptist,California Baptist,2856,California Baptist Lancers,exact
+campbell,Campbell,2097,Campbell Fighting Camels,exact
+canisius,Canisius,2099,Canisius Golden Griffins,exact
+central-ark,Central Ark.,2110,Central Arkansas Bears,exact
+central-conn-st,Central Conn. St.,2115,Central Connecticut Blue Devils,override
+central-mich,Central Mich.,2117,Central Michigan Chippewas,override
+charleston-so,Charleston So.,2127,Charleston Southern Buccaneers,exact
+charlotte,Charlotte,2429,Charlotte 49ers,exact
+chattanooga,Chattanooga,236,Chattanooga Mocs,exact
+chicago-st,Chicago St.,2130,Chicago State Cougars,exact
+cincinnati,Cincinnati,2132,Cincinnati Bearcats,exact
+citadel,The Citadel,2643,The Citadel Bulldogs,exact
+clemson,Clemson,228,Clemson Tigers,exact
+cleveland-st,Cleveland St.,325,Cleveland State Vikings,exact
+coastal-caro,Coastal Carolina,324,Coastal Carolina Chanticleers,exact
+col-of-charleston,Col. of Charleston,232,Charleston Cougars,fuzzy:0.50
+colgate,Colgate,2142,Colgate Raiders,exact
+colorado,Colorado,38,Colorado Buffaloes,exact
+colorado-st,Colorado St.,36,Colorado State Rams,exact
+columbia,Columbia,171,Columbia Lions,exact
+coppin-st,Coppin St.,2154,Coppin State Eagles,exact
+cornell,Cornell,172,Cornell Big Red,exact
+creighton,Creighton,156,Creighton Bluejays,exact
+dartmouth,Dartmouth,159,Dartmouth Big Green,exact
+davidson,Davidson,2166,Davidson Wildcats,exact
+dayton,Dayton,2168,Dayton Flyers,exact
+delaware,Delaware,48,Delaware Blue Hens,exact
+delaware-st,Delaware St.,2169,Delaware State Hornets,exact
+denver,Denver,2172,Denver Pioneers,exact
+depaul,DePaul,305,DePaul Blue Demons,exact
+drake,Drake,2181,Drake Bulldogs,exact
+duke,Duke,150,Duke Blue Devils,exact
+duquesne,Duquesne,2184,Duquesne Dukes,exact
+east-carolina,East Carolina,151,East Carolina Pirates,exact
+east-tenn-st,ETSU,2193,East Tennessee State Buccaneers,exact
+eastern-ill,Eastern Ill.,2197,Eastern Illinois Panthers,override
+eastern-ky,Eastern Ky.,2198,Eastern Kentucky Colonels,exact
+eastern-mich,Eastern Mich.,2199,Eastern Michigan Eagles,override
+eastern-wash,Eastern Wash.,331,Eastern Washington Eagles,exact
+elon,Elon,2210,Elon Phoenix,exact
+evansville,Evansville,339,Evansville Purple Aces,exact
+fairfield,Fairfield,2217,Fairfield Stags,exact
+fdu,FDU,161,Fairleigh Dickinson Knights,exact
+fgcu,FGCU,526,Florida Gulf Coast Eagles,exact
+fiu,FIU,2229,Florida International Panthers,exact
+fla-atlantic,Fla. Atlantic,2226,Florida Atlantic Owls,exact
+florida,Florida,57,Florida Gators,exact
+florida-am,Florida A&M,50,Florida A&M Rattlers,exact
+florida-st,Florida St.,52,Florida State Seminoles,exact
+fordham,Fordham,2230,Fordham Rams,exact
+fresno-st,Fresno St.,278,Fresno State Bulldogs,exact
+furman,Furman,231,Furman Paladins,exact
+ga-southern,Ga. Southern,290,Georgia Southern Eagles,exact
+gardner-webb,Gardner-Webb,2241,Gardner-Webb Runnin' Bulldogs,exact
+george-mason,George Mason,2244,George Mason Patriots,exact
+george-washington,George Washington,45,George Washington Revolutionaries,exact
+georgetown,Georgetown,46,Georgetown Hoyas,exact
+georgia,Georgia,61,Georgia Bulldogs,exact
+georgia-st,Georgia St.,2247,Georgia State Panthers,exact
+georgia-tech,Georgia Tech,59,Georgia Tech Yellow Jackets,exact
+gonzaga,Gonzaga,2250,Gonzaga Bulldogs,exact
+grambling,Grambling,2755,Grambling Tigers,exact
+grand-canyon,Grand Canyon,2253,Grand Canyon Lopes,exact
+green-bay,Green Bay,2739,Green Bay Phoenix,exact
+hampton,Hampton,2261,Hampton Pirates,exact
+harvard,Harvard,108,Harvard Crimson,exact
+hawaii,Hawaii,62,Hawai'i Rainbow Warriors,override
+high-point,High Point,2272,High Point Panthers,exact
+hofstra,Hofstra,2275,Hofstra Pride,exact
+holy-cross,Holy Cross,107,Holy Cross Crusaders,exact
+houston,Houston,248,Houston Cougars,exact
+houston-christian,Houston Christian,2277,Houston Christian Huskies,exact
+howard,Howard,47,Howard Bison,exact
+idaho,Idaho,70,Idaho Vandals,exact
+idaho-st,Idaho St.,304,Idaho State Bengals,exact
+ill-chicago,UIC,82,UIC Flames,exact
+illinois,Illinois,356,Illinois Fighting Illini,exact
+illinois-st,Illinois St.,2287,Illinois State Redbirds,exact
+indiana,Indiana,84,Indiana Hoosiers,exact
+indiana-st,Indiana St.,282,Indiana State Sycamores,exact
+iona,Iona,314,Iona Gaels,exact
+iowa,Iowa,2294,Iowa Hawkeyes,exact
+iowa-st,Iowa St.,66,Iowa State Cyclones,exact
+ipfw,Purdue Fort Wayne,2870,Purdue Fort Wayne Mastodons,exact
+iu-indy,IU Indy,85,IU Indianapolis Jaguars,exact
+jackson-st,Jackson St.,2296,Jackson State Tigers,exact
+jacksonville,Jacksonville,294,Jacksonville Dolphins,exact
+jacksonville-st,Jacksonville St.,55,Jacksonville State Gamecocks,exact
+james-madison,James Madison,256,James Madison Dukes,exact
+kansas,Kansas,2305,Kansas Jayhawks,exact
+kansas-st,Kansas St.,2306,Kansas State Wildcats,exact
+kennesaw-st,Kennesaw St.,338,Kennesaw State Owls,exact
+kent-st,Kent St.,2309,Kent State Golden Flashes,exact
+kentucky,Kentucky,96,Kentucky Wildcats,exact
+la-lafayette,Louisiana,309,Louisiana Ragin' Cajuns,exact
+la-monroe,ULM,2433,UL Monroe Warhawks,override
+lafayette,Lafayette,322,Lafayette Leopards,exact
+lamar,Lamar University,2320,Lamar Cardinals,exact
+le-moyne,Le Moyne,2330,Le Moyne Dolphins,exact
+lehigh,Lehigh,2329,Lehigh Mountain Hawks,exact
+liberty,Liberty,2335,Liberty Flames,exact
+lindenwood-mo,Lindenwood,2815,Lindenwood Lions,exact
+lipscomb,Lipscomb,288,Lipscomb Bisons,exact
+long-beach-st,Long Beach St.,299,Long Beach State 49ers,exact
+long-island,LIU,2341,Long Island University Sharks,exact
+louisiana-tech,Louisiana Tech,2348,Louisiana Tech Bulldogs,exact
+louisville,Louisville,97,Louisville Cardinals,exact
+loyola-chicago,Loyola Chicago,2350,Loyola Chicago Ramblers,exact
+loyola-maryland,Loyola Maryland,2352,Loyola Maryland Greyhounds,exact
+loyola-marymount,LMU (CA),2351,Loyola Marymount Lions,exact
+lsu,LSU,99,LSU Tigers,exact
+manhattan,Manhattan,2363,Manhattan Jaspers,exact
+marist,Marist,2368,Marist Red Foxes,exact
+marquette,Marquette,269,Marquette Golden Eagles,exact
+marshall,Marshall,276,Marshall Thundering Herd,exact
+maryland,Maryland,120,Maryland Terrapins,exact
+mcneese,McNeese,2377,McNeese Cowboys,exact
+memphis,Memphis,235,Memphis Tigers,exact
+mercer,Mercer,2382,Mercer Bears,exact
+mercyhurst,Mercyhurst,2385,Mercyhurst Lakers,exact
+miami-fl,Miami (FL),2390,Miami Hurricanes,override
+miami-oh,Miami (OH),193,Miami (OH) RedHawks,override
+michigan,Michigan,130,Michigan Wolverines,exact
+michigan-st,Michigan St.,127,Michigan State Spartans,exact
+middle-tenn,Middle Tenn.,2393,Middle Tennessee Blue Raiders,exact
+milwaukee,Milwaukee,270,Milwaukee Panthers,exact
+minnesota,Minnesota,135,Minnesota Golden Gophers,exact
+mississippi-st,Mississippi St.,344,Mississippi State Bulldogs,exact
+mississippi-val,Mississippi Val.,2400,Mississippi Valley State Delta Devils,fuzzy:0.67
+missouri,Missouri,142,Missouri Tigers,exact
+missouri-st,Missouri St.,2623,Missouri State Bears,exact
+montana,Montana,149,Montana Grizzlies,exact
+montana-st,Montana St.,147,Montana State Bobcats,exact
+montreat,Montreat,2410,Montreat Cavaliers,exact
+morehead-st,Morehead St.,2413,Morehead State Eagles,exact
+morgan-st,Morgan St.,2415,Morgan State Bears,exact
+murray-st,Murray St.,93,Murray State Racers,exact
+navy,Navy,2426,Navy Midshipmen,exact
+nc-at,N.C. A&T,2448,North Carolina A&T Aggies,fuzzy:0.60
+nc-central,N.C. Central,2428,North Carolina Central Eagles,exact
+neb-omaha,Omaha,2437,Omaha Mavericks,exact
+nebraska,Nebraska,158,Nebraska Cornhuskers,exact
+nevada,Nevada,2440,Nevada Wolf Pack,exact
+new-hampshire,New Hampshire,160,New Hampshire Wildcats,exact
+new-haven,New Haven,2441,New Haven Chargers,exact
+new-mexico,New Mexico,167,New Mexico Lobos,exact
+new-mexico-st,New Mexico St.,166,New Mexico State Aggies,exact
+new-orleans,LSU New Orleans ,2443,LSU New Orleans Privateers,exact
+niagara,Niagara,315,Niagara Purple Eagles,exact
+nicholls-st,Nicholls,2447,Nicholls Colonels,exact
+njit,NJIT,2885,NJIT Highlanders,exact
+norfolk-st,Norfolk St.,2450,Norfolk State Spartans,exact
+north-ala,North Ala.,2453,North Alabama Lions,fuzzy:0.50
+north-carolina,North Carolina,153,North Carolina Tar Heels,exact
+north-carolina-st,NC State,152,NC State Wolfpack,exact
+north-dakota,North Dakota,155,North Dakota Fighting Hawks,exact
+north-dakota-st,North Dakota St.,2449,North Dakota State Bison,exact
+north-florida,North Florida,2454,North Florida Ospreys,exact
+north-texas,North Texas,249,North Texas Mean Green,exact
+northeastern,Northeastern,111,Northeastern Huskies,exact
+northern-ariz,Northern Ariz.,2464,Northern Arizona Lumberjacks,override
+northern-colo,Northern Colo.,2458,Northern Colorado Bears,override
+northern-ill,NIU,2459,Northern Illinois Huskies,override
+northern-ky,Northern Ky.,94,Northern Kentucky Norse,exact
+northwestern,Northwestern,77,Northwestern Wildcats,exact
+northwestern-st,Northwestern St.,2466,Northwestern State Demons,exact
+notre-dame,Notre Dame,87,Notre Dame Fighting Irish,exact
+oakland,Oakland,2473,Oakland Golden Grizzlies,exact
+ohio,Ohio,195,Ohio Bobcats,exact
+ohio-st,Ohio St.,194,Ohio State Buckeyes,exact
+oklahoma,Oklahoma,201,Oklahoma Sooners,exact
+ole-miss,Ole Miss,145,Ole Miss Rebels,exact
+oral-roberts,Oral Roberts,198,Oral Roberts Golden Eagles,exact
+oregon,Oregon,2483,Oregon Ducks,exact
+oregon-st,Oregon St.,204,Oregon State Beavers,exact
+pacific,Pacific,279,Pacific Tigers,exact
+penn,Penn,219,Pennsylvania Quakers,exact
+penn-st,Penn St.,213,Penn State Nittany Lions,exact
+pepperdine,Pepperdine,2492,Pepperdine Waves,exact
+pittsburgh,Pittsburgh,221,Pittsburgh Panthers,exact
+portland,Portland,2501,Portland Pilots,exact
+portland-st,Portland St.,2502,Portland State Vikings,exact
+prairie-view,Prairie View,2504,Prairie View A&M Panthers,exact
+presbyterian,Presbyterian,2506,Presbyterian Blue Hose,exact
+princeton,Princeton,163,Princeton Tigers,exact
+providence,Providence,2507,Providence Friars,exact
+purdue,Purdue,2509,Purdue Boilermakers,exact
+queens-nc,Queens (NC),2511,Queens University Royals,exact
+quinnipiac,Quinnipiac,2514,Quinnipiac Bobcats,exact
+radford,Radford,2515,Radford Highlanders,exact
+rhode-island,Rhode Island,227,Rhode Island Rams,exact
+rice,Rice,242,Rice Owls,exact
+rider,Rider,2520,Rider Broncs,exact
+robert-morris,Robert Morris,2523,Robert Morris Colonials,exact
+rutgers,Rutgers,164,Rutgers Scarlet Knights,exact
+sacramento-st,Sacramento St.,16,Sacramento State Hornets,exact
+sacred-heart,Sacred Heart,2529,Sacred Heart Pioneers,exact
+saint-louis,Saint Louis,139,Saint Louis Billikens,exact
+sam-houston-st,Sam Houston,2534,Sam Houston Bearkats,exact
+samford,Samford,2535,Samford Bulldogs,exact
+san-diego,San Diego,301,San Diego Toreros,exact
+san-diego-st,San Diego St.,21,San Diego State Aztecs,exact
+san-francisco,San Francisco,2539,San Francisco Dons,exact
+san-jose-st,San Jose St.,23,San José State Spartans,fuzzy:0.67
+santa-clara,Santa Clara,2541,Santa Clara Broncos,exact
+seattle,Seattle U,2547,Seattle U Redhawks,fuzzy:1.00
+seton-hall,Seton Hall,2550,Seton Hall Pirates,exact
+siena,Siena,2561,Siena Saints,exact
+siu-edwardsville,SIUE,2565,SIU Edwardsville Cougars,exact
+smu,SMU,2567,SMU Mustangs,exact
+south-ala,South Alabama,6,South Alabama Jaguars,exact
+south-carolina,South Carolina,2579,South Carolina Gamecocks,exact
+south-carolina-st,South Carolina St.,2569,South Carolina State Bulldogs,exact
+south-dakota,South Dakota,233,South Dakota Coyotes,exact
+south-dakota-st,South Dakota St.,2571,South Dakota State Jackrabbits,exact
+south-fla,South Fla.,58,South Florida Bulls,exact
+southeast-mo-st,Southeast Mo. St.,2546,Southeast Missouri State Redhawks,fuzzy:0.67
+southeastern-la,Southeastern La.,2545,SE Louisiana Lions,fuzzy:0.50
+southern-california,Southern California,30,USC Trojans,override
+southern-ill,Southern Ill.,79,Southern Illinois Salukis,override
+southern-ind,Southern Ind.,88,Southern Indiana Screaming Eagles,override
+southern-miss,Southern Miss.,2572,Southern Miss Golden Eagles,exact
+southern-u,Southern U.,2582,Southern Jaguars,override
+southern-utah,Southern Utah,253,Southern Utah Thunderbirds,exact
+st-johns-ny,St. John's (NY),2599,St. John's Red Storm,exact
+st-marys-ca,Saint Mary's (CA),2608,Saint Mary's Gaels,exact
+st-peters,Saint Peter's,2612,Saint Peter's Peacocks,exact
+st-thomas-mn,St. Thomas (MN),2900,St. Thomas Tommies,exact
+stanford,Stanford,24,Stanford Cardinal,exact
+stephen-f-austin,SFA,2617,Stephen F. Austin Lumberjacks,exact
+stetson,Stetson,56,Stetson Hatters,exact
+stonehill,Stonehill,284,Stonehill Skyhawks,exact
+stony-brook,Stony Brook,2619,Stony Brook Seawolves,exact
+syracuse,Syracuse,183,Syracuse Orange,exact
+tarleton-st,Tarleton St.,122886,Tarleton State Texans,exact
+tcu,TCU,2628,TCU Horned Frogs,exact
+temple,Temple,218,Temple Owls,exact
+tennessee,Tennessee,2633,Tennessee Volunteers,exact
+tennessee-st,Tennessee St.,2634,Tennessee State Tigers,exact
+tennessee-tech,Tennessee Tech,2635,Tennessee Tech Golden Eagles,exact
+tex-am-commerce,East Texas A&M,2837,East Texas A&M Lions,exact
+texas,Texas,251,Texas Longhorns,exact
+texas-am,Texas A&M,245,Texas A&M Aggies,exact
+texas-arlington,UT Arlington,250,UT Arlington Mavericks,exact
+texas-southern,Texas Southern,2640,Texas Southern Tigers,exact
+texas-st,Texas St.,326,Texas State Bobcats,exact
+texas-tech,Texas Tech,2641,Texas Tech Red Raiders,exact
+toledo,Toledo,2649,Toledo Rockets,exact
+towson,Towson,119,Towson Tigers,exact
+troy,Troy,2653,Troy Trojans,exact
+tulane,Tulane,2655,Tulane Green Wave,exact
+tulsa,Tulsa,202,Tulsa Golden Hurricane,exact
+tuskegee,Tuskegee,2657,Tuskegee Golden Tigers,exact
+uab,UAB,5,UAB Blazers,exact
+ualr,Little Rock,2031,Little Rock Trojans,exact
+uc-davis,UC Davis,302,UC Davis Aggies,exact
+uc-irvine,UC Irvine,300,UC Irvine Anteaters,exact
+uc-riverside,UC Riverside,27,UC Riverside Highlanders,exact
+uc-santa-barbara,UC Santa Barbara,2540,UC Santa Barbara Gauchos,exact
+ucf,UCF,2116,UCF Knights,exact
+ucla,UCLA,26,UCLA Bruins,exact
+uconn,UConn,41,UConn Huskies,exact
+uiw,UIW,2916,Incarnate Word Cardinals,override
+umbc,UMBC,2378,UMBC Retrievers,exact
+umes,UMES,2379,Maryland Eastern Shore Hawks,override
+umkc,Kansas City,140,Kansas City Kangaroos,exact
+unc-asheville,UNC Asheville,2427,UNC Asheville Bulldogs,exact
+unc-greensboro,UNC Greensboro,2430,UNC Greensboro Spartans,exact
+unc-wilmington,UNCW,350,UNC Wilmington Seahawks,exact
+uni,UNI,2460,Northern Iowa Panthers,override
+unlv,UNLV,2439,UNLV Rebels,exact
+usc-upstate,USC Upstate,2908,South Carolina Upstate Spartans,override
+ut-martin,UT Martin,2630,UT Martin Skyhawks,exact
+utah,Utah,254,Utah Utes,exact
+utah-st,Utah St.,328,Utah State Aggies,exact
+utah-tech,Utah Tech,3101,Utah Tech Trailblazers,exact
+utah-valley,Utah Valley,3084,Utah Valley Wolverines,exact
+utep,UTEP,2638,UTEP Miners,exact
+utrgv,UTRGV,292,UT Rio Grande Valley Vaqueros,override
+utsa,UTSA,2636,UTSA Roadrunners,exact
+valparaiso,Valparaiso,2674,Valparaiso VALPARAISO,exact
+vcu,VCU,2670,VCU Rams,exact
+villanova,Villanova,222,Villanova Wildcats,exact
+virginia,Virginia,258,Virginia Cavaliers,exact
+virginia-tech,Virginia Tech,259,Virginia Tech Hokies,exact
+wake-forest,Wake Forest,154,Wake Forest Demon Deacons,exact
+washington,Washington,264,Washington Huskies,exact
+washington-st,Washington St.,265,Washington State Cougars,exact
+weber-st,Weber St.,2692,Weber State Wildcats,exact
+west-ga,West Ga.,2698,West Georgia Wolves,exact
+west-virginia,West Virginia,277,West Virginia Mountaineers,exact
+western-caro,Western Caro.,2717,Western Carolina Catamounts,exact
+western-ill,Western Ill.,2710,Western Illinois Leathernecks,override
+western-ky,Western Ky.,98,Western Kentucky Hilltoppers,exact
+western-mich,Western Mich.,2711,Western Michigan Broncos,override
+wichita-st,Wichita St.,2724,Wichita State Shockers,exact
+wiley,Wiley,2728,Wiley Wildcats,exact
+william-mary,William & Mary,2729,William & Mary Tribe,exact
+winthrop,Winthrop,2737,Winthrop Eagles,exact
+wisconsin,Wisconsin,275,Wisconsin Badgers,exact
+wofford,Wofford,2747,Wofford Terriers,exact
+wright-st,Wright St.,2750,Wright State Raiders,exact
+wyoming,Wyoming,2751,Wyoming Cowboys,exact
+xavier,Xavier,2752,Xavier Musketeers,exact
+yale,Yale,43,Yale Bulldogs,exact
+youngstown-st,Youngstown St.,2754,Youngstown State Penguins,exact

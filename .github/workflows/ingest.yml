@@ -1,0 +1,62 @@
+name: Ingest data
+
+on:
+  schedule:
+    # Nightly full refresh at 03:17 US Central (08:17 UTC during CDT, 09:17 UTC during CST).
+    - cron: "17 8 * * *"
+    # Monday poll + RPI refresh at ~13:40 US Central.
+    - cron: "40 18 * * 1"
+    # Live-day score refresh every 20 minutes from 15:00 to 23:59 UTC (10am–6:59pm CT) and 00:00–05:59 UTC.
+    - cron: "*/20 15-23 * * *"
+    - cron: "*/20 0-5 * * *"
+  workflow_dispatch:
+    inputs:
+      job:
+        description: "Ingest job (scores|today|teams|boxscores|rankings|stats|backfill|nightly)"
+        default: "nightly"
+      args:
+        description: "Extra CLI flags, e.g. --from 2026-10-01"
+        default: ""
+
+concurrency:
+  group: ingest
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      NCAA_API_BASE: ${{ vars.NCAA_API_BASE || 'https://ncaa-api.henrygd.me' }}
+      FEATURED_TEAM: ${{ vars.FEATURED_TEAM || 'stanford' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Apply migrations
+        run: pnpm db:migrate
+      - name: Pick job
+        id: pick
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "job=${{ github.event.inputs.job }}" >> "$GITHUB_OUTPUT"
+            echo "args=${{ github.event.inputs.args }}" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "17 8 * * *" ]; then
+            echo "job=nightly" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event.schedule }}" = "40 18 * * 1" ]; then
+            echo "job=rankings" >> "$GITHUB_OUTPUT"
+          else
+            echo "job=today" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Run ingest
+        run: pnpm ingest ${{ steps.pick.outputs.job }} ${{ steps.pick.outputs.args }}
+      - name: Load new box scores after score refresh
+        if: steps.pick.outputs.job == 'today'
+        run: pnpm ingest boxscores --limit 60

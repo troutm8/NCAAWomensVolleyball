@@ -1,0 +1,78 @@
+import { and, eq } from "drizzle-orm";
+import type { Db } from "@/db/client";
+import { rankings, teams, type Poll } from "@/db/schema";
+import { inArray, notInArray } from "drizzle-orm";
+import * as ncaa from "../sources/ncaa";
+import { parseIntOrNull, stripVotes } from "../names";
+import { loadTeamIndex, log } from "./common";
+import { todayEastern } from "@/lib/season";
+
+/** Case-insensitive lookup of a column in an ncaa.com table row. */
+function col(row: Record<string, string>, ...names: string[]): string | undefined {
+  const keys = Object.keys(row);
+  for (const n of names) {
+    const k = keys.find((x) => x.trim().toLowerCase() === n.toLowerCase());
+    if (k) return row[k];
+  }
+  return undefined;
+}
+
+export async function ingestRanking(db: Db, poll: Poll): Promise<number> {
+  const table = await ncaa.fetchRankingTable(poll);
+  const asOf = (table.updated ?? "").trim() || `fetched ${todayEastern()}`;
+  const idx = await loadTeamIndex(db);
+  const rows = [];
+  for (const r of table.data) {
+    const rank = parseIntOrNull(col(r, "rank"));
+    const rawName = col(r, "school", "team") ?? "";
+    if (!rank || !rawName.trim()) continue;
+    const { name, votes } = stripVotes(rawName);
+    const slug = idx.resolve(name);
+    if (!slug) log(`rankings ${poll}: no team for "${name}"`);
+    rows.push({
+      poll,
+      asOf,
+      fetchedDate: todayEastern(),
+      rank,
+      teamName: name,
+      teamSlug: slug,
+      record: col(r, "record") ?? null,
+      prevRank: parseIntOrNull(col(r, "previous rank", "prev")),
+      points: parseIntOrNull(col(r, "total points", "points")),
+      firstPlaceVotes: votes,
+      conference: col(r, "conf", "conference") ?? null,
+      homeRecord: col(r, "home") ?? null,
+      roadRecord: col(r, "road") ?? null,
+      neutralRecord: col(r, "neutral") ?? null,
+    });
+  }
+  if (!rows.length) {
+    log(`rankings ${poll}: empty table (${table.title})`);
+    return 0;
+  }
+  await db.delete(rankings).where(and(eq(rankings.poll, poll), eq(rankings.asOf, asOf)));
+  for (let i = 0; i < rows.length; i += 100) await db.insert(rankings).values(rows.slice(i, i + 100));
+  if (poll === "rpi") {
+    // The RPI table lists every Division I program: use it to flag D1 membership and conference names.
+    const d1 = rows.map((r) => r.teamSlug).filter((s): s is string => !!s);
+    if (d1.length > 300) {
+      await db.update(teams).set({ isD1: true }).where(inArray(teams.slug, d1));
+      await db.update(teams).set({ isD1: false }).where(notInArray(teams.slug, d1));
+      for (const r of rows) if (r.teamSlug && r.conference) await db.update(teams).set({ conferenceName: r.conference }).where(eq(teams.slug, r.teamSlug));
+    }
+  }
+  log(`rankings ${poll}: ${rows.length} rows (${asOf})`);
+  return rows.length;
+}
+
+export async function ingestRankings(db: Db, polls: Poll[] = ["avca", "rpi", "committee"]): Promise<number> {
+  let n = 0;
+  for (const p of polls) {
+    try {
+      n += await ingestRanking(db, p);
+    } catch (err) {
+      log(`rankings ${p} failed:`, (err as Error).message);
+    }
+  }
+  return n;
+}
