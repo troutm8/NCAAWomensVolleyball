@@ -1,6 +1,7 @@
 # NCAA Women's Volleyball Dashboard — 2026 Season Plan
 
-Written 2026-10-10. Status: planning. Nothing built yet.
+Written 2026-10-10. Status: Phase 0–2 built on 2026-10-10 (see "Build log" at the end);
+Phases 3–4 in progress.
 
 ## 1. What we are building
 
@@ -11,7 +12,8 @@ the tournament, and how the bracket is playing out once it exists.
 
 Assumptions made for this plan (change them and the plan adjusts):
 
-- Audience is fans and casual analysts, not coaching staff. No video, no touch-level data.
+- Decided 2026-10-10: a personal site, mostly for the owner's wife, centered on Stanford
+  with the rest of Division I as context. Database-backed. Hosting kept under $10/month.
 - Scope is all of Division I (359 teams on ESPN, 348 in the NCAA RPI). Other divisions
   are out of scope for v1.
 - Personal / non-commercial project. The data sources below are unofficial and must not
@@ -244,3 +246,32 @@ deployed.
 - AVCA poll pages and ESPN rankings endpoint (Week 8 poll)
 - henrygd/ncaa-api README and live probes of its endpoints
 - Live probes of ESPN site API endpoints listed in section 4
+
+## 11. Build log and deviations from the plan
+
+**2026-10-10.** Phases 0, 1 and most of 2 and 3 were built in one session.
+
+What changed versus the plan above, and why:
+
+- **ncaa.com is the match spine, not ESPN.** ESPN's volleyball box scores turned out to be
+  empty shells, while ncaa.com's `/game/{id}/boxscore` carries full player and team stats.
+  Matches are therefore keyed by the ncaa.com game id, and ESPN contributes set-by-set
+  scores, venue, broadcast, logos and the live overlay.
+- **Single package, not a monorepo.** `src/db`, `src/ingest`, `src/lib`, `src/app` in one
+  Next.js project is enough for a personal site.
+- **PGlite locally, Neon in production.** Same Postgres dialect and migrations; no local
+  database server needed. `DATABASE_URL` switches to the real Postgres.
+- **No shadcn/ui or Recharts.** Plain Tailwind components and an inline SVG sparkline keep
+  the dependency list short.
+- **Standings are derived** from stored results, as planned, because neither feed exposes
+  a parsable standings table.
+- **RPI has tied ranks.** The rankings table is unique on (poll, as-of, team) rather than rank.
+
+Data loaded locally on 2026-10-10: 4,823 matches (Aug 21 through Nov 28, including the
+full remaining schedule), 347 D1 teams linked to ESPN (14 non-D1 exhibition opponents
+unlinked), AVCA Week 8, RPI through Oct 4, 12 stat-leader tables, and box scores for all
+226 ACC matches to date. The remaining box scores load with `pnpm ingest boxscores`.
+
+Still to do, in order: full box score backfill; deploy (Neon + Vercel + GitHub Actions
+secret); committee Top 16 parser check when the first 2026 reveal posts; bracketology and
+auto-bid tracker (Phase 4); bracket page for Nov 29; Playwright smoke tests in CI.
