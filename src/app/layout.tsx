@@ -32,13 +32,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
             <Link href="/" className="flex items-center gap-2 font-semibold">
               {featured && <TeamLogo team={teamView(featured)} size={32} />}
-              <span>
-                Cardinal Volleyball <span className="text-muted">{SEASON_YEAR}</span>
+              <span className="whitespace-nowrap">
+                Cardinal <span className="hidden sm:inline">Volleyball</span> <span className="text-muted">{SEASON_YEAR}</span>
               </span>
             </Link>
-            <nav className="ml-auto flex gap-1 overflow-x-auto text-sm">
+            <nav className="-mr-4 ml-auto flex gap-0.5 overflow-x-auto pr-4 text-sm sm:gap-1">
               {NAV.map(([href, label]) => (
-                <Link key={href} href={href} className="rounded-md px-3 py-1.5 hover:bg-soft">
+                <Link key={href} href={href} className="rounded-md px-2 py-1.5 hover:bg-soft sm:px-3">
                   {label}
                 </Link>
               ))}

@@ -42,6 +42,10 @@ pnpm ingest nightly           # all of the above for the last 3 days
 
 Checks: `pnpm typecheck`, `pnpm test`, `pnpm build`.
 
+**One process at a time with PGlite.** The embedded database cannot be opened by two
+processes at once: stop `pnpm dev` before running an ingest job, and vice versa. With a
+real `DATABASE_URL` (Neon) this restriction goes away.
+
 ## Team identity
 
 ncaa.com and ESPN name teams differently. `data/team-crosswalk.csv` maps ncaa.com slugs
