@@ -5,7 +5,7 @@ import { inArray, notInArray } from "drizzle-orm";
 import * as ncaa from "../sources/ncaa";
 import { parseIntOrNull, stripVotes } from "../names";
 import { loadTeamIndex, log } from "./common";
-import { todayEastern } from "@/lib/season";
+import { SEASON_YEAR, todayEastern } from "@/lib/season";
 
 /** Case-insensitive lookup of a column in an ncaa.com table row. */
 function col(row: Record<string, string>, ...names: string[]): string | undefined {
@@ -17,9 +17,31 @@ function col(row: Record<string, string>, ...names: string[]): string | undefine
   return undefined;
 }
 
+/**
+ * Whether an upstream "updated" label belongs to the current season.
+ *
+ * ncaa.com leaves last season's table in place until the new one is published — the
+ * committee's top 16 served "Through Games OCT. 18, 2025" well into October 2026 — and a
+ * stale table looks exactly like a current one apart from the year in this label.
+ * Labels without a year (e.g. "fetched 2026-10-11") are accepted.
+ */
+export function isCurrentSeasonLabel(asOf: string, seasonYear = SEASON_YEAR): boolean {
+  const years = [...asOf.matchAll(/\b(19|20)\d{2}\b/g)].map((m) => Number(m[0]));
+  if (!years.length) return true;
+  // The season spans one calendar year here; the championship is in December 2026.
+  return years.some((y) => y === seasonYear);
+}
+
 export async function ingestRanking(db: Db, poll: Poll): Promise<number> {
   const table = await ncaa.fetchRankingTable(poll);
   const asOf = (table.updated ?? "").trim() || `fetched ${todayEastern()}`;
+  if (!isCurrentSeasonLabel(asOf)) {
+    // Drop anything a previous run stored from the stale table, then leave the poll empty
+    // so the page says "not loaded yet" instead of showing last season as current.
+    await db.delete(rankings).where(and(eq(rankings.poll, poll), eq(rankings.asOf, asOf)));
+    log(`rankings ${poll}: skipped, upstream table is not from ${SEASON_YEAR} ("${asOf}")`);
+    return 0;
+  }
   const idx = await loadTeamIndex(db);
   const rows = [];
   for (const r of table.data) {

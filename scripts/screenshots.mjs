@@ -18,6 +18,8 @@ for (const [name, path, width] of [
   ["scores", "/scores?date=2026-10-09", 1280],
   ["rankings", "/rankings", 1280],
   ["standings", "/standings?conf=acc", 1280],
+  ["bracket", "/bracket", 1280],
+  ["bracket-mobile", "/bracket", 390],
   ["match", "/matches/6626343", 1280],
 ]) {
   const page = await browser.newPage({ viewport: { width, height: 900 } });

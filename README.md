@@ -19,11 +19,15 @@ Plan and design notes: [docs/PLAN.md](docs/PLAN.md).
   score refreshes every 20 minutes on match days.
 - **Web app**: Next.js 15 App Router, server-rendered from the database. The home page and
   scores page overlay live set scores from `/api/live` while matches are in progress.
+- **Bracketology**: `/bracket` projects the 64-team field, seeds 1–16 and the conference
+  automatic bids (32 in 2026) from RPI, the AVCA poll and stored results. The weights live in
+  `src/lib/bracketology.ts` and are published on the page; hand-fix a conference's automatic
+  qualifier in `src/lib/auto-bid-overrides.ts` when the derived answer is wrong.
 
 ## Local development
 
 ```bash
-pnpm install
+pnpm install                  # pnpm 10; the repo's .npmrc pins the public npm registry
 cp .env.example .env          # optional; defaults work with PGlite
 pnpm db:migrate
 pnpm ingest backfill          # whole season: ~15 minutes, most of it box scores

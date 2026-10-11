@@ -19,6 +19,7 @@ const NAV = [
   ["/scores", "Scores"],
   ["/rankings", "Rankings"],
   ["/standings", "Standings"],
+  ["/bracket", "Bracket"],
   ["/stats", "Stats"],
   ["/teams", "Teams"],
 ] as const;

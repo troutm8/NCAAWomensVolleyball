@@ -17,6 +17,7 @@ import {
   getTeamSeasonStats,
   getTeamStatLeaderRows,
 } from "@/lib/queries";
+import { getTeamResume } from "@/lib/bracketology";
 import { FEATURED_TEAM, todayEastern } from "@/lib/season";
 import { matchView, teamView } from "@/lib/views";
 
@@ -30,7 +31,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
   const team = await getTeam(slug);
   if (!team) notFound();
   const today = todayEastern();
-  const [ms, ranks, avcaHist, rpiHist, season, players, leaders] = await Promise.all([
+  const [ms, ranks, avcaHist, rpiHist, season, players, leaders, resume] = await Promise.all([
     getTeamMatches(slug),
     getTeamCurrentRanks(slug),
     getTeamRankHistory(slug, "avca"),
@@ -38,6 +39,7 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
     getTeamSeasonStats(slug),
     getTeamPlayerSeason(slug),
     getTeamStatLeaderRows(slug),
+    getTeamResume(slug),
   ]);
   const record = computeRecord(slug, ms);
   const tv = teamView(team);
@@ -121,6 +123,29 @@ export default async function TeamPage({ params }: { params: Promise<{ slug: str
           )}
         </Card>
       </div>
+
+      {resume && resume.record.wins + resume.record.losses > 0 && (
+        <Card
+          title="Tournament resume"
+          action={
+            <Link href="/bracket" className="text-xs text-muted underline">
+              Bracketology
+            </Link>
+          }
+        >
+          <div className="grid grid-cols-3 gap-3 text-center sm:grid-cols-6">
+            <Stat label="vs RPI top 25" value={resume.quality.top25.join("-")} />
+            <Stat label="vs RPI top 50" value={resume.quality.top50.join("-")} />
+            <Stat label="vs RPI top 100" value={resume.quality.top100.join("-")} />
+            <Stat label="Road + neutral" value={resume.roadNeutral.join("-")} />
+            <Stat label="Losses outside 100" value={String(resume.badLosses)} />
+            <Stat label="Resume score" value={num(resume.score, 1)} />
+            <p className="col-span-3 text-xs text-muted sm:col-span-6">
+              Opponent quality by current RPI. The score is the 100-point projection weight used on the bracket page.
+            </p>
+          </div>
+        </Card>
+      )}
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card title="Schedule and results">

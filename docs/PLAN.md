@@ -275,6 +275,39 @@ stat-leader tables, and box scores for all 2,803 completed matches (66,966 playe
 Lesson learned: PGlite is single-process. Running an ingest job while the dev server was
 open corrupted the local database and it had to be rebuilt. With Neon this does not apply.
 
+**2026-10-11.** Moved the work to a local Mac checkout and started Phase 4.
+
+- **Bracketology and the auto-bid tracker are in**, on a new `/bracket` page:
+  `src/lib/bracketology.ts` builds a resume per team (RPI rank, AVCA rank, record versus
+  the current RPI top 25/50/100, losses outside the top 100, road and neutral record) and
+  scores it out of 100 with published weights (RPI 45, poll 20, quality wins 25, bad-loss
+  avoidance 5, road and neutral 5). Conference champions take the automatic bids, the
+  best remaining resumes fill the field to 64, and the whole field is re-ranked to assign
+  seeds 1–16. The page shows the inputs next to every team and publishes the method.
+- **Automatic bids are derived, not hand-maintained.** A conference's bid is projected to
+  its current leader until the conference has no conference matches left to play; at that
+  point the winner of its last conference match is the champion, which is how every
+  conference tournament final resolves. `src/lib/auto-bid-overrides.ts` is the hand-fix
+  escape hatch for conferences that break that assumption, in the same spirit as
+  `data/team-crosswalk-overrides.csv`.
+- **Stale upstream tables are now rejected.** ncaa.com was still serving last season's
+  committee top 16 ("Through Games OCT. 18, 2025") in October 2026, and the ingest was
+  storing it as if it were current. `isCurrentSeasonLabel` in the rankings job skips any
+  table whose "updated" label names a year other than the season year, and deletes rows a
+  previous run stored from it, so the committee page reads "not loaded yet" until the real
+  2026 reveal posts. Checked again on 2026-10-11: still 2025 data.
+- **32 automatic bids in 2026, not 31.** Section 3 above assumed 31 automatic qualifiers,
+  which was the 2025 number. The loaded data has 32 conferences fielding Division I
+  volleyball — the Pac-12 is back to nine volleyball members (Boise St., Colorado St.,
+  Fresno St., Gonzaga, Oregon St., San Diego St., Texas St., Utah St., Washington St.) —
+  so the projected field splits 32 automatic and 32 at-large. The count is derived from the
+  data rather than hardcoded. Automatic-qualification *eligibility* is in no feed, so
+  `NO_AUTO_BID` in `src/lib/auto-bid-overrides.ts` can drop a conference's bid if one turns
+  out not to qualify, and its slot goes to the next at-large.
+- **Local toolchain notes for the Mac checkout.** `~/.npmrc` points at an internal registry,
+  so the repo carries an `.npmrc` pinning the public one; `package.json` allows esbuild's
+  build script (pnpm 10 blocks it by default and tsx and vitest need it).
+
 Still to do, in order: deploy (Neon + Vercel + GitHub Actions secret); committee Top 16
-parser check when the first 2026 reveal posts; bracketology and auto-bid tracker
-(Phase 4); bracket page for Nov 29; Playwright smoke tests in CI.
+parser check when the first 2026 reveal posts (guard is in, the reveal is not); bracket
+page for Nov 29, fed by the real field; Playwright smoke tests in CI.

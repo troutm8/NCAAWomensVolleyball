@@ -4,6 +4,7 @@ import path from "node:path";
 import * as espn from "./sources/espn";
 import * as ncaa from "./sources/ncaa";
 import { normalizeName, stripVotes, tokenOverlap } from "./names";
+import { isCurrentSeasonLabel } from "./jobs/rankings";
 
 const fx = (name: string) => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", name), "utf8"));
 
@@ -67,5 +68,19 @@ describe("name matching", () => {
   it("scores overlap", () => {
     expect(tokenOverlap("Stanford", "Stanford Cardinal")).toBeGreaterThan(0.4);
     expect(tokenOverlap("USC Upstate", "USC Trojans")).toBeLessThan(0.6);
+  });
+});
+
+describe("isCurrentSeasonLabel", () => {
+  it("accepts this season's labels and labels without a year", () => {
+    expect(isCurrentSeasonLabel("Through Games Oct. 04 2026")).toBe(true);
+    expect(isCurrentSeasonLabel("Through Games OCT. 4, 2026")).toBe(true);
+    expect(isCurrentSeasonLabel("fetched 2026-10-11")).toBe(true);
+    expect(isCurrentSeasonLabel("Through Games Oct. 4")).toBe(true);
+  });
+  it("rejects a table left over from last season", () => {
+    // What ncaa.com served for the committee's top 16 through October 2026.
+    expect(isCurrentSeasonLabel("Through Games OCT. 18, 2025")).toBe(false);
+    expect(isCurrentSeasonLabel("Through Games Dec. 20 2027")).toBe(false);
   });
 });
