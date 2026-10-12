@@ -34,6 +34,12 @@ Four things that will otherwise cost you an hour:
 Environment: `DATABASE_URL` (unset → PGlite), `NCAA_API_BASE`, `FEATURED_TEAM` (default
 `stanford`), `NEXT_PUBLIC_DISPLAY_TZ` (default `America/Los_Angeles`). `.env` is gitignored.
 
+Next.js loads `.env` on its own, but the tsx scripts do not — `db:migrate` and `ingest` pass
+`--env-file-if-exists=.env` for that reason. Drop it and they silently write to PGlite while
+appearing to succeed. An exported `DATABASE_URL` still wins over the file, which is how CI
+supplies its secret. `db:migrate` prints `(postgres)` or `(pglite)`; trust that over
+assumption.
+
 ## Commands
 
 ```bash

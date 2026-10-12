@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "tsx src/db/migrate.ts",
-    "ingest": "tsx src/ingest/cli.ts"
+    "db:migrate": "tsx --env-file-if-exists=.env src/db/migrate.ts",
+    "ingest": "tsx --env-file-if-exists=.env src/ingest/cli.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.8",

@@ -29,7 +29,7 @@ Plan and design notes: [docs/PLAN.md](docs/PLAN.md).
 ```bash
 pnpm install                  # pnpm 10; the repo's .npmrc pins the public npm registry
 cp .env.example .env          # optional; defaults work with PGlite
-pnpm db:migrate
+pnpm db:migrate               # reads .env; "(postgres)" means Neon, "(pglite)" means local
 pnpm ingest backfill          # whole season: ~15 minutes, most of it box scores
 pnpm dev                      # http://localhost:3000
 ```
@@ -45,6 +45,12 @@ pnpm ingest nightly           # all of the above for the last 3 days
 ```
 
 Checks: `pnpm typecheck`, `pnpm test`, `pnpm build`.
+
+`pnpm db:migrate` and `pnpm ingest` load `.env` themselves via Node's
+`--env-file-if-exists`, so they target whatever `DATABASE_URL` names. An exported
+`DATABASE_URL` takes precedence over the file, which is how GitHub Actions passes its secret.
+Without either, they fall back to PGlite — check the `(postgres)` / `(pglite)` suffix that
+`db:migrate` prints if you are unsure which database you just wrote to.
 
 **One process at a time with PGlite.** The embedded database cannot be opened by two
 processes at once: stop `pnpm dev` before running an ingest job, and vice versa. With a
