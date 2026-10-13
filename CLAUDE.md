@@ -40,6 +40,11 @@ appearing to succeed. An exported `DATABASE_URL` still wins over the file, which
 supplies its secret. `db:migrate` prints `(postgres)` or `(pglite)`; trust that over
 assumption.
 
+The flag is on those two package scripts only. An ad-hoc `pnpm tsx scratch.ts` gets no `.env`
+and will quietly read the stale local PGlite file instead of Neon — run throwaway scripts as
+`pnpm tsx --env-file-if-exists=.env scratch.ts`, and have them print `kind` from `getDb()`
+before you believe a number.
+
 ## Commands
 
 ```bash
