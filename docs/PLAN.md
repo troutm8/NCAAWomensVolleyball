@@ -311,3 +311,30 @@ open corrupted the local database and it had to be rebuilt. With Neon this does 
 Still to do, in order: deploy (Neon + Vercel + GitHub Actions secret); committee Top 16
 parser check when the first 2026 reveal posts (guard is in, the reveal is not); bracket
 page for Nov 29, fed by the real field; Playwright smoke tests in CI.
+
+**2026-10-13.** Set up a second Mac and deployed the web app to Vercel.
+
+- **Production is live at https://ncaa-womens-volleyball.vercel.app**, project
+  `ncaa-womens-volleyball` on the Vercel account `tomcarroll-6406`, deployed from the CLI
+  (`vercel deploy --prod`). `DATABASE_URL` is a production secret in Vercel pointing at the
+  same Neon database the GitHub Actions ingest writes to, so the site and the scheduled
+  ingests share one source of truth and nothing is backfilled twice.
+- **Functions run in `iad1`.** `vercel.json` pins `regions` to `iad1` so the server-rendered
+  pages sit in the same AWS region (us-east-1) as Neon. Verified on the live site: the
+  `x-vercel-id` response header reads `sfo1::iad1::…`, edge in San Francisco, function in
+  Virginia.
+- **Git integration is connected.** `vercel git connect` first failed because the Vercel
+  account had no GitHub login connection, and then because the Vercel GitHub App was not
+  installed on the `troutm8` account. Both are dashboard-side grants; once GitHub was
+  connected to the Vercel account and the app installed on the repository, `vercel git
+  connect` succeeded and pushes to `main` deploy to production. The linked checkout keeps
+  its project id in `.vercel/`, which the Vercel CLI added to `.gitignore` along with `.env*`.
+- **Vercel project names must be lowercase**, so the project is `ncaa-womens-volleyball`
+  (the package name) rather than the repository's `NCAAWomensVolleyball`. `vercel link`
+  needs `--project ncaa-womens-volleyball` on a fresh checkout.
+- Machine notes: this Mac has no `~/.npmrc`, so the `--registry` flag on the global pnpm
+  install was harmless but unneeded. It runs Node 26 where CI pins 22; typecheck, tests
+  and build all passed on 26.
+
+Still to do, in order: committee Top 16 parser check when the first 2026 reveal posts (guard is in, the reveal is not);
+bracket page for Nov 29, fed by the real field; Playwright smoke tests in CI.
