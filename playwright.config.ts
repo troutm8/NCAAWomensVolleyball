@@ -19,6 +19,8 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
+    // SLOW_MO=500 pnpm test:e2e --headed pauses half a second between actions, to watch along.
+    launchOptions: { slowMo: Number(process.env.SLOW_MO ?? 0) },
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {

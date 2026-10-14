@@ -74,7 +74,8 @@ serves half-compiled modules if parallel requests race it); with no server up it
 `next start`, which needs a prior `pnpm build`. `CI=1 PORT=3001 pnpm test:e2e` is the exact CI
 behaviour beside a dev server. Browsers come from `pnpm exec playwright install chromium` and
 must match the pinned Playwright version; `E2E_STRICT_FRESHNESS=1` turns stale-data warnings
-into failures (CI sets it on `main`).
+into failures (CI sets it on `main`). To watch a run: `pnpm test:e2e --headed`, with
+`SLOW_MO=500` to pause between actions, or `pnpm test:e2e --ui` for the step-through view.
 
 ## Layout
 
