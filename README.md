@@ -44,7 +44,7 @@ pnpm ingest stats             # national individual and team leaders
 pnpm ingest nightly           # all of the above for the last 3 days
 ```
 
-Checks: `pnpm typecheck`, `pnpm test`, `pnpm build`.
+Checks: `pnpm typecheck`, `pnpm test`, `pnpm build`, then `pnpm test:e2e` (Playwright smoke tests against a running server).
 
 `pnpm db:migrate` and `pnpm ingest` load `.env` themselves via Node's
 `--env-file-if-exists`, so they target whatever `DATABASE_URL` names. An exported

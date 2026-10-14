@@ -50,7 +50,8 @@ before you believe a number.
 ```bash
 pnpm dev | build | start
 pnpm typecheck                # tsc --noEmit
-pnpm test                     # vitest
+pnpm test                     # vitest (parsers and derivations, no database)
+pnpm test:e2e                 # Playwright smoke tests against a server on :3000 (see below)
 pnpm db:migrate               # apply drizzle/ migrations
 pnpm db:generate              # new migration from src/db/schema.ts
 
@@ -64,7 +65,16 @@ pnpm ingest teams [--rebuild] # rebuild the ncaa.com → ESPN crosswalk
 node scripts/screenshots.mjs  # needs: pnpm playwright install chromium
 ```
 
-Run `pnpm typecheck && pnpm test && pnpm build` before committing; CI runs exactly those.
+Run `pnpm typecheck && pnpm test && pnpm build` before committing; CI runs exactly those, then
+the Playwright smoke tests in `e2e/` against the production build and the Neon database
+(skipped when the `DATABASE_URL` secret is absent, so forks still get the first three).
+
+`pnpm test:e2e` reuses a running `pnpm dev` on port 3000 with one worker (the dev server
+serves half-compiled modules if parallel requests race it); with no server up it starts
+`next start`, which needs a prior `pnpm build`. `CI=1 PORT=3001 pnpm test:e2e` is the exact CI
+behaviour beside a dev server. Browsers come from `pnpm exec playwright install chromium` and
+must match the pinned Playwright version; `E2E_STRICT_FRESHNESS=1` turns stale-data warnings
+into failures (CI sets it on `main`).
 
 ## Layout
 
@@ -76,6 +86,7 @@ Run `pnpm typecheck && pnpm test && pnpm build` before committing; CI runs exact
 | `src/ingest` | `cli.ts`, `jobs/*`, `sources/{ncaa,espn}.ts` (Zod schemas), `fixtures/*` |
 | `src/lib` | `queries.ts` (database reads), `bracketology.ts`, `views.ts`, `season.ts`, `format.ts` |
 | `data` | `team-crosswalk.csv` and its hand-fix overrides |
+| `e2e` | Playwright smoke tests (`smoke.spec.ts`); config in `playwright.config.ts` |
 
 ## Conventions
 

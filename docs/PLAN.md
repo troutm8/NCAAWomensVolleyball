@@ -336,5 +336,36 @@ page for Nov 29, fed by the real field; Playwright smoke tests in CI.
   install was harmless but unneeded. It runs Node 26 where CI pins 22; typecheck, tests
   and build all passed on 26.
 
-Still to do, in order: committee Top 16 parser check when the first 2026 reveal posts (guard is in, the reveal is not);
-bracket page for Nov 29, fed by the real field; Playwright smoke tests in CI.
+**2026-10-13, later.** Playwright smoke tests in CI (plan step 24).
+
+- **Eighteen tests in `e2e/smoke.spec.ts`**, one spec file, Chromium only: every route
+  returns 200 with its heading; the featured team is on the home page, in the RPI table, in
+  its conference standings and on the bracket; AVCA has exactly 25 rows; the committee poll
+  renders either its table or the explicit "not loaded yet" state (it will flip when the
+  2026 reveal posts); the bracket field is 64 with 16 seeds, 48 others, and automatic plus
+  at-large bids summing to 64; the match page is reached by following the home page's
+  "Box score" link rather than a hardcoded id; unknown team and match ids are 404s, not
+  500s; the phone viewport has no horizontal overflow; and a freshness guard checks the
+  footer's last-ingest stamp (3 days) and the RPI through-date (14 days).
+- **Against live Neon, not a seeded PGlite.** The alternative was a hermetic seed from
+  fixtures, which does not exist and would test synthetic pages. Assertions are therefore
+  on structure and invariants, never on numbers or opponents that change weekly.
+- **CI runs them after `pnpm build`** using `next start`, gated on the `DATABASE_URL`
+  secret being present (exposed as `HAS_DATABASE` because `if:` cannot read secrets), so
+  forks and outside pull requests still get typecheck, unit tests and build. Stale data
+  fails only on `main` (`E2E_STRICT_FRESHNESS=1`); elsewhere it is a warning, so an
+  ncaa-api outage does not block unrelated work. The HTML report uploads on failure.
+- **Playwright pinned to 1.63.0** (from 1.58.2). Microsoft's browser CDN answered every
+  build request from this Mac with `400 GatewayExceptionResponse` and the installer hung,
+  while a complete Chromium 1243 (the 1.63 build) was already in
+  `~/Library/Caches/ms-playwright` from another tool. Pinning to the version whose browser
+  was on disk was the only way to run the suite locally; CI downloads its own browser.
+- **Local runs use one worker.** Against `next dev`, parallel first requests race the
+  compiler and it serves `__webpack_modules__[moduleId] is not a function` as a 500. The
+  production server has no such problem, so CI keeps full parallelism. `PORT` is honoured
+  so `CI=1 PORT=3001 pnpm test:e2e` reproduces CI beside a running dev server. Note that
+  `next dev` overwrites the production build in `.next`; run `pnpm build` again before
+  `next start`.
+
+Still to do, in order: committee Top 16 parser check when the first 2026 reveal posts (guard
+is in, the reveal is not); bracket page for Nov 29, fed by the real field.
